@@ -19,8 +19,11 @@ Convert to MachineConfig yaml with butane create-a-partition-for-lvmstorage.bu -
 
 
 # This is the Butane template file that gets turned into the MachineConfig YAML manifest
+
 120GiB is all that should be necessary for RHOCP & CoreOS itself, at least up to 4.15 in April 2024
+
 we use here /dev/nvme0n1, so you need to make sure that's the same storage device you'll use on every node!
+
 ```
 ---
 variant: openshift
@@ -37,8 +40,10 @@ storage:
       start_mib: 120000  # let CoreOS use the first 120GB (minimum 25000 MiB, recommend 120000 MiB or more)
       size_mib:  0       # any size, or "0" to use the rest of the disk
 ```
-# change the label from "worker" to "master" for SNO (single node OpenShift) or 2 or 3 node clusters that are combo master/worker
 # COPY THIS FINAL CODE BLOCK INTO THE ASSISTED INSTALLER
+
+change the label from "worker" to "master" for SNO (single node OpenShift) or 2 or 3 node clusters that are combo master/worker
+
 ```
 ---
 apiVersion: machineconfiguration.openshift.io/v1
